@@ -60,20 +60,9 @@ class MoviesController extends Controller
             ->get(config('services.tmdb.url')."movie/$id?append_to_response=credits,videos,images")
             ->json();
 
-        if(count($movie['videos']['results'])>4)
-            $movie['videos']['results'] = $this->getTrailers($movie['videos']['results']);
+        $viewModel = new MovieViewModel($movie);
 
-        $viewModel = new MovieViewModel(
-            $movie
-        );
-
-        return view('index', $viewModel);
-
-        // return view('show',[
-        //     'movie' => $movie,
-        //     'poster' => config('services.tmdb.url_imgs').'w500',
-        //     'url_imgs' => config('services.tmdb.url_imgs'),
-        // ]);
+        return view('show', $viewModel);
     }
 
     /**

@@ -9,14 +9,14 @@
                 <div class="flex flex-wrap items-center text-gray-400 text-sm mt-1">
                     <i class="fa-sharp fa-solid fa-star text-orange-500"></i>
                     <span class="ml-1">{{$movie['vote_average']}}</span>
+                    <span class="mx-2"> - </span>
+                    <i class="fas fa-vote-yea text-orange-500"></i>
+                    <span class="ml-1">{{$movie['vote_count']}} votes</span>
+                    <span></span>
                     <span class="mx-2">|</span>
                     <span>{{$movie['release_date']}}</span>
                     <span class="mx-2">|</span>
-                    <span>
-                        @foreach ($movie['genres'] as $genre)
-                            {{$genre['name']}}@if (!$loop->last),@endif
-                        @endforeach
-                    </span>
+                    <span>{{$movie['genres']}}</span>
                 </div>
                 <p class="text-gray-300 mt-8">
                     {{$movie['overview']}}
@@ -25,22 +25,18 @@
                 <div class="mt-12">
                     <h4 class="text-white font-semibold">Featured Cast</h4>
                     <div class="flex mt-4">
-                        @foreach ($movie['credits']['crew'] as $crew)
-                            @if($loop->index < 4)
+                        @foreach ($movie['crew'] as $crew)
                                 <div class="mr-8">
                                     <div>{{$crew['name']}}</div>
                                     <div class="text-sm text-gray-400">{{$crew['job']}}</div>
                                 </div>
-                            @else
-                                @break
-                            @endif
                         @endforeach
                     </div>
                 </div>
 
                 <div class="mt-12">
-                    @if(count($movie['videos']['results'])>0)
-                        <x-trailer-carousel :trailers="$movie['videos']['results']"/>
+                    @if(count($movie['trailers'])>0)
+                        <x-trailer-carousel :trailers="$movie['trailers']"/>
                     @endif
                 </div>
             </div>
@@ -51,23 +47,19 @@
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Cast</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                @foreach ($movie['credits']['cast'] as $cast)
+                @foreach ($movie['cast'] as $cast)
                     @if(strlen($cast['profile_path'])>0)
-                        @if($loop->index < 10)
-                            <div class="mt-8">
-                                <a href="#">
-                                    <img src="{{$poster.$cast['profile_path']}}" alt="{{$cast['name']}}" class="hover:opacity-75 transition ease-in-out duration-200">
-                                </a>
-                                <div class="mt-2">
-                                    <a href="#" class="text-lg mt-2 hover:text-gray-300 font-semibold text">{{$cast['name']}}</a>
-                                    <div class="flex items-center text-gray-400 text-sm mt-1">
-                                        {{$cast['character']}}
-                                    </div>
+                        <div class="mt-8">
+                            <a href="#">
+                                <img src="{{config('services.tmdb.url_imgs').'w500'.$cast['profile_path']}}" alt="{{$cast['name']}}" class="hover:opacity-75 transition ease-in-out duration-200">
+                            </a>
+                            <div class="mt-2">
+                                <a href="#" class="text-lg mt-2 hover:text-gray-300 font-semibold text">{{$cast['name']}}</a>
+                                <div class="flex items-center text-gray-400 text-sm mt-1">
+                                    {{$cast['character']}}
                                 </div>
                             </div>
-                        @else
-                            @break
-                        @endif
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -78,21 +70,17 @@
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                @foreach ($movie['images']['backdrops'] as $image)
-                    @if($loop->index < 9)
-                        <div class="mt-8">
-                            <a
-                                href="#"
-                                @click.prevent="
-                                    isOpen=true
-                                    image='{{$url_imgs.'original'.$image['file_path']}}'
-                                ">
-                                <img src="{{$poster.$image['file_path']}}" alt="images" class="hover:opacity-75 transition ease-in-out duration-200">
-                            </a>
-                        </div>
-                    @else
-                        @break
-                    @endif
+                @foreach ($movie['images'] as $image)
+                    <div class="mt-8">
+                        <a
+                            href="#"
+                            @click.prevent="
+                                isOpen=true
+                                image='{{config('services.tmdb.url_imgs').'original'.$image['file_path']}}'
+                            ">
+                            <img src="{{config('services.tmdb.url_imgs').'original'.$image['file_path']}}" alt="images" class="hover:opacity-75 transition ease-in-out duration-200">
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <div style="background-color: rgba(0, 0, 0, .5)"
