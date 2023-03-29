@@ -11,13 +11,15 @@ class ActorsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($page = 1)
     {
-        $popularActors = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'person/popular')
-            ->json()['results'];
+        $results = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url').'person/popular?page='.$page)
+            ->json();
 
-        $viewModel = new ActorsViewModel($popularActors);
+        $popularActors =$results['results'];
+
+        $viewModel = new ActorsViewModel($popularActors, $page, $results['total_pages']);
 
         return view('actors.index', $viewModel);
     }

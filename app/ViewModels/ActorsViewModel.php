@@ -9,9 +9,15 @@ class ActorsViewModel extends ViewModel
 
     public $popularActors;
 
-    public function __construct($popularActors)
+    public $page;
+
+    public $totalPages;
+
+    public function __construct($popularActors, $page, $totalPages)
     {
         $this->popularActors = $popularActors;
+        $this->page = $page;
+        $this->totalPages = $totalPages;
     }
 
     public function popularActors()
@@ -29,5 +35,15 @@ class ActorsViewModel extends ViewModel
                 'name', 'id', 'profile_path', 'known_for'
             ]);
         });
+    }
+
+    public function previous()
+    {
+        return $this->page > 1 ? $this->page - 1 : null;
+    }
+
+    public function next()
+    {
+        return $this->page < $this->totalPages ? $this->page +1 : null;
     }
 }
