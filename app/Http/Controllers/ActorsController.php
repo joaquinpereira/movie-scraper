@@ -11,13 +11,16 @@ class ActorsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($page = 1)
+    public function index(Request $request, $page = 1)
     {
+        abort_if($page > getTotalPages($request,'pagesPopularActors'), 204);
+
         $results = Http::withToken(config('services.tmdb.token'))
             ->get(config('services.tmdb.url').'person/popular?page='.$page)
             ->json();
 
         $popularActors =$results['results'];
+        setTotalPages($request,'pagesPopularActors', $results['total_pages']);
 
         $viewModel = new ActorsViewModel($popularActors, $page, $results['total_pages']);
 
@@ -45,7 +48,9 @@ class ActorsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // // $viewModel = new ActorsViewModel($popularActors, $page, $results['total_pages']);
+
+        // return view('actors.show', $viewModel);
     }
 
     /**
@@ -71,4 +76,6 @@ class ActorsController extends Controller
     {
         //
     }
+
+
 }

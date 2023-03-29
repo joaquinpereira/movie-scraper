@@ -6,7 +6,7 @@
             <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">
                 Popular Actors
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div class="actors grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($popularActors as $actor)
                     <div class="actor mt-8">
                         <a href="#">
@@ -21,7 +21,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="flex justify-between mt-16">
+        {{-- <div class="flex justify-between mt-16">
             @if ($previous)
                 <a href="/actors/page/{{$previous}}">Previous</a>
             @else
@@ -32,6 +32,33 @@
             @else
                 <div></div>
             @endif
+        </div> --}}
+        <div class="page-load-status">
+            <div class="flex justify-center">
+                <div class="infinite-scroll-request my-8 text-4xl">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                </div>
+
+            </div>
+            <div class="flex justify-center">
+                <p class="infinite-scroll-last my-8 text-4xl fa-beat">End of content</p>
+            </div>
+            <p class="infinite-scroll-error">Error pagination</p>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+    <script>
+        window.addEventListener("load", function(event){
+            let elem = document.querySelector('.actors');
+            let infScroll = new InfiniteScroll( elem, {
+                // options
+                path: '/actors/page/@{{#}}',
+                append: '.actor',
+                status: '.page-load-status'
+            });
+        });
+    </script>
 @endsection
