@@ -13,5 +13,5 @@ Route::get('/actors/page/{page?}', [ActorsController::class, 'index']);
 Route::get('/actors/{actor}', [ActorsController::class, 'show'])->name('actors.show');
 
 Route::get('/tv', [TvController::class, 'index'])->name('tv.index');
-Route::get('/tv/page/{page?}', [TvController::class, 'index']);
+//Route::get('/tv/page/{page?}', [TvController::class, 'index']);
 Route::get('/tv/{tv}', [TvController::class, 'show'])->name('tv.show');

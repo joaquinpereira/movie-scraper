@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ViewModels\TvViewModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class TvController extends Controller
 {
@@ -11,7 +13,24 @@ class TvController extends Controller
      */
     public function index()
     {
-        //
+        $popularTv = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url').'tv/popular')
+            ->json()['results'];
+
+        $topRatedTv = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url').'tv/top_rated')
+            ->json()['results'];
+
+
+        $genres = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url').'genre/tv/list')
+            ->json()['genres'];
+
+        $viewModel = new TvViewModel(
+            $popularTv, $topRatedTv, $genres
+        );
+
+        return view('tv.index', $viewModel);
     }
 
     /**
