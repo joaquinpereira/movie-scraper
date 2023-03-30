@@ -1,77 +1,81 @@
 @extends('layouts.main')
 
 @section('content')
-tv show
-    {{-- <div class="movie-info border-b border-gray-800">
+    <div class="tvshow-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
-            <img src="{{$movie['poster_path']}}" alt="{{$movie['title']}}" class="w-96 border-8 border-gray-200 rounded-lg">
+            <img src="{{$tvshow['poster_path']}}" alt="{{$tvshow['name']}}" class="w-96 border-8 border-gray-200 rounded-lg">
             <div class="md:ml-24">
-                <h2 class="text-4xl font-semibold">{{$movie['title']}}</h2>
+                <h2 class="text-4xl font-semibold">{{$tvshow['name']}}</h2>
                 <div class="flex flex-wrap items-center text-gray-400 text-sm mt-1">
                     <i class="fa-sharp fa-solid fa-star text-orange-500"></i>
-                    <span class="ml-1">{{$movie['vote_average']}}</span>
+                    <span class="ml-1">{{$tvshow['vote_average']}}</span>
                     <span class="mx-2"> - </span>
                     <i class="fas fa-vote-yea text-orange-500"></i>
-                    <span class="ml-1">{{$movie['vote_count']}} votes</span>
+                    <span class="ml-1">{{$tvshow['vote_count']}} votes</span>
                     <span></span>
                     <span class="mx-2">|</span>
-                    <span>{{$movie['release_date']}}</span>
+                    <span>{{$tvshow['first_air_date']}}</span>
                     <span class="mx-2">|</span>
-                    <span>{{$movie['genres']}}</span>
+                    <span>{{$tvshow['genres']}}</span>
                 </div>
                 <p class="text-gray-300 mt-8">
-                    {{$movie['overview']}}
+                    {{$tvshow['overview']}}
                 </p>
 
                 <div class="mt-12">
                     <h4 class="text-white font-semibold">Featured Cast</h4>
                     <div class="flex mt-4">
-                        @foreach ($movie['crew'] as $crew)
-                                <div class="mr-8">
-                                    <div>{{$crew['name']}}</div>
-                                    <div class="text-sm text-gray-400">{{$crew['job']}}</div>
-                                </div>
+                        @if ($tvshow['created_by'])
+                            <div class="mr-8">
+                                <div>{{$tvshow['created_by'][0]['name']}}</div>
+                                <div class="text-sm text-gray-400">Creator</div>
+                            </div>
+                        @endif
+
+                        @foreach ($tvshow['crew'] as $crew)
+                            <div class="mr-8">
+                                <div>{{$crew['name']}}</div>
+                                <div class="text-sm text-gray-400">{{$crew['job']}}</div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="mt-12">
-                    @if(count($movie['trailers'])>0)
-                        <x-trailer-carousel :trailers="$movie['trailers']"/>
+                    @if(count($tvshow['trailers'])>0)
+                        <x-trailer-carousel :trailers="$tvshow['trailers']"/>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="movie-cast border-b border-gray-800">
+    <div class="tvshow-cast border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Cast</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                @foreach ($movie['cast'] as $cast)
-                    @if(strlen($cast['profile_path'])>0)
-                        <div class="mt-8">
-                            <a href="{{ route('actors.show', $cast['id'])}}">
-                                <img src="{{config('services.tmdb.url_imgs').'w500'.$cast['profile_path']}}" alt="{{$cast['name']}}" class="hover:opacity-75 transition ease-in-out duration-200">
-                            </a>
-                            <div class="mt-2">
-                                <a href="{{ route('actors.show', $cast['id'])}}" class="text-lg mt-2 hover:text-gray-300 font-semibold text">{{$cast['name']}}</a>
-                                <div class="flex items-center text-gray-400 text-sm mt-1">
-                                    {{$cast['character']}}
-                                </div>
+                @foreach ($tvshow['cast'] as $cast)
+                    <div class="mt-8">
+                        <a href="{{ route('actors.show', $cast['id'])}}">
+                            <img src="{{$cast['profile_path']}}" alt="{{$cast['name']}}" class="hover:opacity-75 transition ease-in-out duration-200">
+                        </a>
+                        <div class="mt-2">
+                            <a href="{{ route('actors.show', $cast['id'])}}" class="text-lg mt-2 hover:text-gray-300 font-semibold text">{{$cast['name']}}</a>
+                            <div class="flex items-center text-gray-400 text-sm mt-1">
+                                {{$cast['character']}}
                             </div>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
             </div>
         </div>
     </div>
 
-    <div class="movie-images" x-data="{ isOpen:false, image: ''}">
+    <div class="tvshow-images" x-data="{ isOpen:false, image: ''}">
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                @foreach ($movie['images'] as $image)
+                @foreach ($tvshow['images'] as $image)
                     <div class="mt-8">
                         <a
                             href="#"
@@ -104,5 +108,5 @@ tv show
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 @endsection
