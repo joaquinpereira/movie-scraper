@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="movie-info border-b border-gray-800">
+tv show
+    {{-- <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
             <img src="{{$movie['poster_path']}}" alt="{{$movie['title']}}" class="w-96 border-8 border-gray-200 rounded-lg">
             <div class="md:ml-24">
@@ -103,5 +104,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

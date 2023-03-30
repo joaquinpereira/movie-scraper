@@ -6,7 +6,7 @@
             <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">
                 Popular Actors
             </h2>
-            <div class="actors grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {{-- <div class="actors grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($popularActors as $actor)
                     <div class="actor mt-8">
                         <a href="{{ route('actors.show', $actor['id'])}}">
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
         {{-- <div class="flex justify-between mt-16">
             @if ($previous)
@@ -48,7 +48,7 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
     <script>
         window.addEventListener("load", function(event){
@@ -61,4 +61,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}
