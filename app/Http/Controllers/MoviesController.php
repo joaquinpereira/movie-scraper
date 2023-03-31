@@ -7,7 +7,6 @@ use App\ViewModels\MovieViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use PhpParser\Node\Stmt\Break_;
 
 class MoviesController extends Controller
 {
@@ -17,16 +16,16 @@ class MoviesController extends Controller
     public function index()
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'movie/popular')
+            ->get(config('services.tmdb.url').'movie/popular?language='.App::getLocale())
             ->json()['results'];
 
         $nowPlayingMovies = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'movie/now_playing')
+            ->get(config('services.tmdb.url').'movie/now_playing?language='.App::getLocale())
             ->json()['results'];
 
 
         $genres = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'genre/movie/list')
+            ->get(config('services.tmdb.url').'genre/movie/list?language='.App::getLocale())
             ->json()['genres'];
 
         $viewModel = new MoviesViewModel(

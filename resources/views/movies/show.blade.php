@@ -11,7 +11,7 @@
                     <span class="ml-1">{{$movie['vote_average']}}</span>
                     <span class="mx-2"> - </span>
                     <i class="fas fa-vote-yea text-orange-500"></i>
-                    <span class="ml-1">{{$movie['vote_count']}} votes</span>
+                    <span class="ml-1">{{$movie['vote_count']}} @lang('votes')</span>
                     <span></span>
                     <span class="mx-2">|</span>
                     <span>{{$movie['release_date']}}</span>

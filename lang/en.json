@@ -1,5 +1,8 @@
 {
     "Featured Cast": "Featured Cast",
     "Images":"Images",
-    "Cast":"Cast"
+    "Cast":"Cast",
+    "votes": "votes",
+    "Popular Movies": "Popular Movies",
+    "Now Playing": "Now Playing"
 }

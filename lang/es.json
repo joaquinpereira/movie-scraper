@@ -1,5 +1,8 @@
 {
     "Featured Cast": "Elenco destacado",
     "Images":"Imágenes",
-    "Cast":"Elenco"
+    "Cast":"Elenco",
+    "votes": "votos",
+    "Popular Movies": "Películas populares",
+    "Now Playing": "Películas de estreno"
 }
