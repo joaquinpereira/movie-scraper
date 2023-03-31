@@ -1,8 +1,8 @@
 <div class="relative mt-3 md:mt-0" x-data="{isOpen:true}" @click.away="isOpen = false">
     <input  wire:model.debounce.500ms="search"
             type="text"
-            class="bg-gray-800 rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline"
-            placeholder="Search (Press '/' to focus)"
+            class="bg-gray-800 rounded-full w-72 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline"
+            placeholder="{{__('Search_bar')}}"
             x-ref="search"
             @keydown.window="
                 if(event.keyCode === 191 || event.keyCode === 111){
@@ -23,7 +23,7 @@
     </span>
 
     @if (strlen($search)>2)
-        <div class="absolute bg-gray-800 text-sm rounded-md w-64 mt-2 z-10"
+        <div class="absolute bg-gray-800 text-sm rounded-md w-72 mt-2 z-10"
             x-show.transition.opacity="isOpen">
             @if($searchResults->count() > 0)
                 <ul>
@@ -44,7 +44,7 @@
 
                 </ul>
             @else
-                <div class="px-3 py-3">No results for "{{$search}}"</div>
+                <div class="px-3 py-3">@lang('Search_bar_no_results',['criteria' => $search])</div>
             @endif
         </div>
     @endif

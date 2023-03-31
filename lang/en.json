@@ -4,5 +4,10 @@
     "Cast":"Cast",
     "votes": "votes",
     "Popular Movies": "Popular Movies",
-    "Now Playing": "Now Playing"
+    "Now Playing": "Now Playing",
+    "Search_bar": "Search (Press '/' to focus)",
+    "Search_bar_no_results": "No results for ':criteria'",
+    "Movies":"Movies",
+    "TV Shows": "TV Shows",
+    "Actors": "Actors"
 }

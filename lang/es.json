@@ -4,5 +4,10 @@
     "Cast":"Elenco",
     "votes": "votos",
     "Popular Movies": "Películas populares",
-    "Now Playing": "Películas de estreno"
+    "Now Playing": "Películas de estreno",
+    "Search_bar": "Buscar (presione '/' para enfocar)",
+    "Search_bar_no_results": "No hay resultados para ':criteria'",
+    "Movies":"Películas",
+    "TV Shows": "Series",
+    "Actors": "Actores"
 }

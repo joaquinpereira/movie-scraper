@@ -16,22 +16,22 @@
                 <li>
                     <a href="{{ route('movies.index') }}">
                         <i class="fa fa-film fa-bounce"></i>
-                        Movies
+                        @lang('Movies')
                     </a>
                 </li>
                 <li class="md:ml-16 mt-3 md:mt-0">
                     <a href="{{ route('movies.index') }}" class="hover:text-gray-300">
-                        Movies
+                        @lang('Movies')
                     </a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
                     <a href="{{route('tv.index')}}" class="hover:text-gray-300">
-                        TV Shows
+                        @lang('TV Shows')
                     </a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
                     <a href="{{route('actors.index')}}" class="hover:text-gray-300">
-                        Actors
+                        @lang('Actors')
                     </a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
