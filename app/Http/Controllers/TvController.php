@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ViewModels\TvShowViewModel;
 use App\ViewModels\TvViewModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 
 class TvController extends Controller
@@ -15,16 +16,16 @@ class TvController extends Controller
     public function index()
     {
         $popularTv = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'tv/popular')
+            ->get(config('services.tmdb.url').'tv/popular?language='.App::getLocale())
             ->json()['results'];
 
         $topRatedTv = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'tv/top_rated')
+            ->get(config('services.tmdb.url').'tv/top_rated?language='.App::getLocale())
             ->json()['results'];
 
 
         $genres = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url').'genre/tv/list')
+            ->get(config('services.tmdb.url').'genre/tv/list?language='.App::getLocale())
             ->json()['genres'];
 
         $viewModel = new TvViewModel(
