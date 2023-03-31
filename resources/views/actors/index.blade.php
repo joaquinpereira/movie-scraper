@@ -4,7 +4,7 @@
     <div class="container mx-auto px-4 py-16">
         <div class="popular-actors">
             <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">
-                Popular Actors
+                @lang('Popular Actors')
             </h2>
             <div class="actors grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($popularActors as $actor)
@@ -41,9 +41,9 @@
 
             </div>
             <div class="flex justify-center">
-                <p class="infinite-scroll-last my-8 text-4xl fa-beat">End of content</p>
+                <p class="infinite-scroll-last my-8 text-4xl fa-beat">@lang('End of content')</p>
             </div>
-            <p class="infinite-scroll-error">Error pagination</p>
+            <p class="infinite-scroll-error">@lang('Error pagination')</p>
         </div>
     </div>
 @endsection
