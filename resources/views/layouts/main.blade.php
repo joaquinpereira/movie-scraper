@@ -34,6 +34,10 @@
                         Actors
                     </a>
                 </li>
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <livewire:flag-drop-down></livewire:flag-drop-down>
+                </li>
+
             </ul>
             <div class="flex flex-col md:flex-row items-center">
                 <livewire:search-dropdown></livewire:search-dropdown>

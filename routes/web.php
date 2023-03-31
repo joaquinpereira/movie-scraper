@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActorsController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\TvController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MoviesController::class, 'index'])->name('movies.index');
@@ -15,3 +16,5 @@ Route::get('/actors/{actor}', [ActorsController::class, 'show'])->name('actors.s
 Route::get('/tv', [TvController::class, 'index'])->name('tv.index');
 //Route::get('/tv/page/{page?}', [TvController::class, 'index']);
 Route::get('/tv/{tv}', [TvController::class, 'show'])->name('tv.show');
+
+Route::get('lang/{locale}', [LocalizationController::class, 'index']);

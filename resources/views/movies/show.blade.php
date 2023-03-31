@@ -23,7 +23,7 @@
                 </p>
 
                 <div class="mt-12">
-                    <h4 class="text-white font-semibold">Featured Cast</h4>
+                    <h4 class="text-white font-semibold">@lang("Featured Cast")</h4>
                     <div class="flex mt-4">
                         @foreach ($movie['crew'] as $crew)
                                 <div class="mr-8">
@@ -45,7 +45,7 @@
 
     <div class="movie-cast border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Cast</h2>
+            <h2 class="text-4xl font-semibold">@lang('Cast')</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($movie['cast'] as $cast)
                     @if(strlen($cast['profile_path'])>0)
@@ -68,7 +68,7 @@
 
     <div class="movie-images" x-data="{ isOpen:false, image: ''}">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Images</h2>
+            <h2 class="text-4xl font-semibold">@lang('Images')</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($movie['images'] as $image)
                     <div class="mt-8">

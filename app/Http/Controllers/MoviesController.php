@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ViewModels\MoviesViewModel;
 use App\ViewModels\MovieViewModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use PhpParser\Node\Stmt\Break_;
 
@@ -57,10 +58,18 @@ class MoviesController extends Controller
     public function show(string $id)
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url')."movie/$id?append_to_response=credits,videos,images")
+            ->get(config('services.tmdb.url')."movie/$id?language=".App::getLocale()."&append_to_response=credits,videos,images")
             ->json();
 
-        $viewModel = new MovieViewModel($movie);
+        $images = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url')."movie/$id/images")
+            ->json();
+
+        $videos = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url')."movie/$id/videos")
+            ->json();
+
+        $viewModel = new MovieViewModel($movie, $images, $videos);
 
         return view('movies.show', $viewModel);
     }
@@ -88,13 +97,5 @@ class MoviesController extends Controller
     {
         //
     }
-    public function getTrailers($videos){
-        $list = [];
-        foreach($videos as $video){
-            if($video['site']=='YouTube' && $video['type'] =='Trailer' && $video['official']){
-                $list[] = $video;
-            }
-        }
-        return $list;
-    }
+
 }
