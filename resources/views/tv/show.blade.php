@@ -11,7 +11,7 @@
                     <span class="ml-1">{{$tvshow['vote_average']}}</span>
                     <span class="mx-2"> - </span>
                     <i class="fas fa-vote-yea text-orange-500"></i>
-                    <span class="ml-1">{{$tvshow['vote_count']}} votes</span>
+                    <span class="ml-1">{{$tvshow['vote_count']}} @lang('votes')</span>
                     <span></span>
                     <span class="mx-2">|</span>
                     <span>{{$tvshow['first_air_date']}}</span>
@@ -23,12 +23,12 @@
                 </p>
 
                 <div class="mt-12">
-                    <h4 class="text-white font-semibold">Featured Cast</h4>
+                    <h4 class="text-white font-semibold">@lang("Featured Cast")</h4>
                     <div class="flex mt-4">
                         @if ($tvshow['created_by'])
                             <div class="mr-8">
                                 <div>{{$tvshow['created_by'][0]['name']}}</div>
-                                <div class="text-sm text-gray-400">Creator</div>
+                                <div class="text-sm text-gray-400">@lang('Creator')</div>
                             </div>
                         @endif
 
@@ -52,7 +52,7 @@
 
     <div class="tvshow-cast border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Cast</h2>
+            <h2 class="text-4xl font-semibold">@lang('Cast')</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach ($tvshow['cast'] as $cast)
                     <div class="mt-8">
@@ -73,7 +73,7 @@
 
     <div class="tvshow-images" x-data="{ isOpen:false, image: ''}">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Images</h2>
+            <h2 class="text-4xl font-semibold">@lang('Images')</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($tvshow['images'] as $image)
                     <div class="mt-8">

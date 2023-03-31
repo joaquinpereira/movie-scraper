@@ -57,10 +57,18 @@ class TvController extends Controller
     public function show(string $id)
     {
         $tvshow = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.url')."tv/$id?append_to_response=credits,videos,images")
+            ->get(config('services.tmdb.url')."tv/$id?language=".App::getLocale()."&append_to_response=credits,videos,images")
             ->json();
 
-        $viewModel = new TvShowViewModel($tvshow);
+        $images = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url')."tv/$id/images")
+            ->json();
+
+        $videos = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.url')."tv/$id/videos")
+            ->json();
+
+        $viewModel = new TvShowViewModel($tvshow, $images, $videos);
 
         return view('tv.show', $viewModel);
     }

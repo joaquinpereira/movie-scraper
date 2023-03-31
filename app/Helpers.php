@@ -16,8 +16,8 @@ function setTotalPages($request,$key,$total){
 function dateFormat()
 {
     if(\Illuminate\Support\Facades\App::getLocale() == "es"){
-        return 'd MMMM, Y';
+        return 'D MMMM, Y';
     }else{
-        return 'MMMM d, Y';
+        return 'MMMM D, Y';
     }
 }
