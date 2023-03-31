@@ -40,13 +40,13 @@
                 <h2 class="text-4xl font-semibold">{{$actor['name']}}</h2>
                 <div class="flex flex-wrap items-center text-gray-400 text-sm mt-1">
                     <i class="fa-solid fa-cake-candles"></i>
-                    <span class="ml-2">{{$actor['birthday']}} ({{$actor['age']}} years old) in {{$actor['place_of_birth']}}</span>
+                    <span class="ml-2">@lang('Born') {{$actor['birthday']}} ({{$actor['age']}} @lang('years old')) @lang('in') {{$actor['place_of_birth']}}</span>
                 </div>
                 <p class="text-gray-300 mt-8">
                     {{$actor['biography']}}
                 </p>
 
-                <h4 class="font-semibold mt-12">Known For</h4>
+                <h4 class="font-semibold mt-12">@lang('Known For')</h4>
 
                 <div class="grid grid-cols-8 sm:grid-cols-5 lg:grid-cols-5 gap-8">
                     @foreach($knownForTitles as $title)
@@ -67,7 +67,7 @@
 
     <div class="credits t border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Credits</h2>
+            <h2 class="text-4xl font-semibold">@lang('Credits')</h2>
             <ul class="list-disc leading-loose pl-5 mt-8">
                 @foreach ($credits as $credit)
                     <li>{{$credit['release_year']}} &middot; <strong>{{$credit['title']}}</strong> as {{$credit['character']}} - {{$credit['media_type']}}</li>

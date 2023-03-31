@@ -24,7 +24,7 @@ class ActorViewModel extends ViewModel
     public function actor()
     {
         return collect($this->actor)->merge([
-            'birthday' => Carbon::parse($this->actor['birthday'])->format('M d, Y'),
+            'birthday' =>  isset($this->actor['birthday']) ? Carbon::parse($this->actor['birthday'])->isoFormat(dateFormat()) : '',
             'age' => Carbon::parse($this->actor['birthday'])->age,
             'profile_path' => $this->actor['profile_path']
                 ? config('services.tmdb.url_imgs').'w300'.$this->actor['profile_path']
